@@ -1,0 +1,16 @@
+<Instructions>
+Analyse la question et le contenu du document ci-après, il s'agit d'extraire du contenu du document le ou les éléments de réponse correspondant à la question posée.
+Si aucun élément ne semble correspondre à la question posé dans le contenu du document, retourne à la place : "aucun"
+</Instructions>
+
+<Format de sortie>
+Retourne, sous forme de texte, la réponse extraite du contexte sans aucun ajout ou modification. 
+</Format de sortie>
+
+<Question>
+{question}
+</Question>
+
+<Contenu du document> 
+{doc_content}
+</Contenu du document> 

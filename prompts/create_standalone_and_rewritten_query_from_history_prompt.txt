@@ -1,0 +1,33 @@
+## Instructions ##
+Analyse la requête de l'utilisateur et met les résultats correspondant dans les variables indiquées par leur nom :
+
+> ajoute une chaîne nommée `question` avec la requête de l'utilisateur fournie `telle quelle`.
+
+> ajoute une variable booléenne : `has_contextual_info` : La valeur est issu de l'analyse suivante :
+- Si un historique de conversation est fourni et que la requête de l'utilisateur fait explicitement ou implicitement référence à un élément présent dans l'historique de la conversation, ou que celui-ci contient des informations utiles pour mieux contextualiser la requête de l'utilisateur et la rendre complète sans besoin de l'historique, donne la valeur `true`, sinon `false`. Fait attention à ce que l'utilisateur n'ait pas changé de sujet.
+Exemple: la présence de ces termes indiquent possiblement une référence explicite à un élément précédent : 'elle, il, elles, ils, le, la, les, leur, leurs, celle-ci, celle-là, ceux-ci, celles-là, la 1ère, la dernière ...
+
+> ajoute une variable : `question_with_context` avec comme valeur la question réécrite à partir de la demande ci-dessous, si `has_contextual_info`, sinon attribue-lui une chaîne vide.
+- Réécrit la requête de l'utilisateur, dans la même langue, en supprimant tous les éléments inutiles de la requête, et, en intégrant, le cas échéent, toutes les informations nécessaires depuis l'historique de la conversation pour contextualiser la requête, et rendre la question autonome. Veille à ce que la requête réécrite reste centrée sur la requête courante de l'utilisateur.
+Exemple: avec en requête: 'bof, et en compta?' et en historique: 'user: quels sont les formations RNCP en RH'. `question_with_context` vaudra : 'quelles sont les formations RNCP en comptabilité'
+Exemple: avec en requête: 'compare les' et comme historique: 'user: quels formations X ?, assistant: formation 1, formation 2, formation 3.'. `question_with_context` vaudra : 'compare les formation 1, formation 2, formation 3 ?'
+
+> ajoute une variable : `modified_question` ayant comme valeur la question réécrite à partir de `question_with_context` et des 3 demandes de remplacements ci-dessous, et si aucun remplacement, attribue-lui la valeur de `question_with_context`.
+- Analyse la valeur de `question_with_context`. Il s'agit d'identifier si l'un des éléments précisé dans une ou plusieurs des listes entre crochets ci-après apparait dans la `question_with_context`, et de remplacer le ou les termes trouvés par la phrase de remplacement précisée après le signe égal. Le reste de la requête restant identique. 
+  - [{diplomes_list}] = `une formation permettant d'accéder à un diplôme de niveau `, suivi du terme identifié (corrigé si besoin). Ne pas appliquer si la question concerne uniquement le diplôme lui-même, sans lien avec les formations correspondantes.
+  - [{certifications_list}]` = `une formation permettant d'accéder à une certification de type `, suivi du terme identifié (corrigé si besoin). Ne pas appliquer si la question concerne uniquement la certification, sans lien avec des formations correspondantes.
+  - [{domains_list}] = `dans le domaine `, suivi du terme identifié (corrigé si besoin). Ne pas appliquer si la question concerne uniquement le domaine lui-même, sans lien avec les formations correspondantes.
+
+Exemple : si la requête est : 'quels sont les BAC+3 en compta', 'modified_question' vaudra : 'quelles sont les formations permettant d'accéder à un diplôme de niveau BAC + 3 dans le domaine de la comptabilité'
+
+- Enfin, identifie la catégorie de la requête 'modified_question'. Elle peut appartenir à l'une des catégories suivantes : 
+  - `salutations` : en cas de salutations en début de conversation. Attention : Uniquement si l'utilisateur ne fait aucune autre demande en sus des saluations.  
+  - `fin_echange` : en cas de formule (sans autre question) mettant fin à la conversation (tel que : 'merci', 'parfait', ou 'au revoir'). Attention : Uniquement si l'utilisateur ne fait auncune autre demande en sus de signifier la fin de la conversation.
+  - `autre` : dans tous les autres cas.
+> ajoute une chaîne `question_type` avec la valeur correspondante parmi `[ 'salutations', 'fin_echange', 'autre']`.
+
+## Requête de l'utilisateur  ##
+{user_query}
+
+{conversation_history}
+

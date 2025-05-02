@@ -1,0 +1,20 @@
+<Instructions>
+Analyse le titre et le contenu du document ci-après, et crée un document correspondant, structuré par thématique, résumé mais très complet, avec l'intégralité des éléments d'informations.
+Le titre doit être ajouté à l'identique au début du résumé.
+Le but est donc de structurer le document, et aussi de réduire autant que possible la taille totale.
+Mais il s'agit de créer un document de référence qui sera utilisé dans un pipeline d'inférence RAG, et à ce titre, il est + important que toutes les informations utiles soient conservées, plutôt que sa taille soit minime.
+</Instructions>
+
+<Format de sortie>
+//Retourne un json avec une clé 'summary' et le résumé dans la valeur de cette clé.
+Retourne le résumé directement et sans aucune autre texte, ni introductif, ni conclusif.
+Le résumé doit être en 'plain text', sans aucun marquage markdown ou autre.
+</Format de sortie>
+
+<Titre du document>
+{doc_title}
+</Titre du document>
+
+<Contenu du document> 
+{doc_content}
+</Contenu du document> 

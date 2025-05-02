@@ -1,0 +1,21 @@
+<Instructions>
+   Découpe le contenu du document en plusieurs parties (appelés chunks) indépendantes. 
+   Chaque chunk doit être découpé de façon à couvrir une thématique du document.
+   Chaque chunk doit contenir le texte nécessaire concernant la thématique qui le concerne.
+   Chaque chunk doit inclure le titre du document en entête. 
+   Le nombre de chunks total peut varier entre 2 min. et 40 max.
+   La taille de chaque chunk doit être de moins de 500 mots.
+   **Note** : Des informations peuvent être dupliquées entre plusieurs chunks si nécessaire.
+</Instructions>
+
+<Format de sortie>
+   Renvoie en format json un tableau avec pour chaque élément : 'chunk_content' en clé, et le texte du chunk en valeur.
+</Format de sortie>
+
+<Titre du document> 
+{doc_title}
+</Titre du document>
+
+<Contenu du document> 
+{doc_content}
+</Contenu du document>

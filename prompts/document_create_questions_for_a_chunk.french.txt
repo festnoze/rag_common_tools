@@ -1,0 +1,38 @@
+<Instructions>
+. **Génération de questions**
+   Crée des questions en lien avec les informations du résumé. Ces questions doivent être exhaustives. Et chaque question doit être atomique, complète et informative.
+   
+   **Caractérisation des termes employés** :
+   - Atomique: chaque question ne doit parler que d'un unique sujet, et ne couvrir qu'un seul élément d'information du document.
+   - Complète: chaque question doit être autonome et compéhensible sans le contexte du document, et à ce titre elles doivent toujours faire explicitement référence au sujet indiqué dans le titre du document pour contextualiser.
+   - Exhaustives: tous les éléments d'informations contenus dans le document doit avoir une question correspondante.
+
+   **Exemples** :
+   - Si le titre est "Formation X" et le résumé contient le texte suivant : "pour l'école Y, la durée de la formation est de 540 heures ou 8 mois en formation continue et 800 heures ou 16 mois en alternance."
+   - Les questions pour ce texte devraient être : 
+    "Quelle est la durée en heures de la formation X en formation continue pour l'école Y ?", "Quelle est la durée en mois de la formation X en formation continue pour l'école Y ?", 
+    "Quelle est la durée en heures de la formation X en alternance pour l'école Y ?", "Quelle est la durée en mois de la formation X en alternance pour l'école Y ?".
+   Elles sont exhaustives, car couvrent toutes les infos contenues dans le texte.
+   Elles sont atomiques car ne concernent qu'un seul sujet : la durée en mois propose une question séparée de la durée en heures ; et la formation continue et l'alternance font aussi l'objet de deux questions séparées.
+   Elles sont complètes car sont compéhensibles indépendamment du contexte, grâce à la présence du titre (ici, le nom de la formation), et à la précision de l'école concernée par la question.
+
+   - Voici des exemples de mauvaises questions pour le même texte :
+   "Quelle est la durée de la formation X en formation continue pour l'école Y ?", n'est pas une bonne question car la résponse contiendrait la durée en heures et en mois, et n'est pas atomique. 
+   "Quelle est la durée en heures de la formation X pour l'école Y ?", n'est pas une bonne question car la réponse devrait contenir les données pour la formation continue et en alternance, et n'est pas atomique.
+   "Quelle est la durée en mois de la formation en alternance pour l'école Y ?", n'est pas une bonne question car ne précise pas la formation concernée, et n'est donc pas complète.
+   "Quelle est la durée en mois de la formation X en alternance ?", n'est pas une bonne question car ne précise pas l'école concernée par la formation, et n'est donc pas complète.
+   "Quel est le nom de la formation ?", n'est pas une bonne question car n'est pas très informative, car le nom de la formation est contenu dans toutes les q
+
+</Instructions>
+
+<Format de sortie>
+   Renvoie en format json un tableau avec pour chaque élément : 'question' en clé, et en valeur, simplement le texte de la question, sans préfixe, ni suffixe.
+</Format de sortie>
+
+<Titre du document> 
+{doc_title}
+</Titre du document>
+
+<Contenu du chunk> 
+{doc_chunk}
+</Contenu du chunk>

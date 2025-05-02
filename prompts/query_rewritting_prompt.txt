@@ -1,0 +1,16 @@
+## Instructions ##
+Analyse la valeur de la `Requête utilisateur` ci-desous. 
+Si l'un des éléments entre simple cottes de l'une ou plusieurs des listes entre crochets ci-après apparait dans la `Requête utilisateur`, alors, appliquer les instructions spécifiées après le signe égal de la liste à la requête. Le reste de la requête peut rester identique. Reformuler la requête au besoin, afin de ne pas corrompte l'intention initiale exprimée par l'utilisateur. Ne pas appliquer si la question concerne explicitement l'objet lui-même, sans lien avec une ou des formations.
+  - [{diplomes_list}] = Attention ici à bien distinguer le contexte dans lequel le diplôme est indiqué, choisi parmi les deux possibilités suivantes, en cas de doute ou de non-dit, choisi la 1ère proposition :
+    - soit il s'agit du niveau que l'on atteind à l'issue de la formation, auquel cas, on remplacera le terme trouvé dans la liste précédente par : `une formation permettant d'accéder à un diplôme de niveau `, suivi du terme identifié (corrigé si besoin).
+    - soit il s'agit du niveau nécessaire pour accéder à la formation, on remplacera alors le terme trouvé dans la liste précédente par : `une formation dont les conditions d'accès indiquent que le diplôme suivant est nécessaire pour y accéder : `, suivi du terme identifié (corrigé si besoin), 
+  - [{certifications_list}]` = remplacer le terme trouvé par la phrase : `une formation permettant d'accéder à une certification de type `, suivi du terme identifié corrigé. Le reste de requête reste identique.
+  - [{domains_list}] = remplacer le terme trouvé par la phrase : `dans le domaine `, suivi du terme identifié corrigé.
+  - [{sub_domains_list}] = remplacer le terme trouvé par la phrase : `dans le sous-domaine (filière) : `, suivi du terme identifié corrigé.
+> Répond avec un simple json avec une clé nommée : `modified_question`, et avec comme valeur, la requête réécrite à partir des transformations ci-dessus, si aucune, affecter la valeur initiale de la requête.
+Exemple 1 : si la requête est : 'quels sont les BAC+3 en compta', 'modified_question' vaudrait : 'quelles sont les formations permettant d'accéder à un diplôme de niveau BAC + 3 dans le domaine de la comptabilité'
+Exemple 2 : si la requête est : 'quelles sont les études possibles avec le baccalauréat ?', 'modified_question' vaudrait : 'quelles sont les formations dont les conditions d'accès indiquent que le diplôme suivant est nécessaire pour y accéder : 'Bac'.
+Exemple 3 : si la requête est : 'liste les métiers en IT', 'modified_question' vaudrait : 'liste les métiers dans le domaine de l'IT' 
+
+## Requête utilisateur  ##
+{user_query}

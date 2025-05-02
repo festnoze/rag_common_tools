@@ -1,0 +1,4 @@
+Exclude all tests related methods, including those containing 'Test', 'Fake', 'Mock' or 'Fixture' in their names, if user query doesn't ask about tests methods explicitly. 
+Search firstly into controllers methods. If the controller class name contain a reference to its version, 
+(like in: 'UserV4Controller'), the latest version of the controller is more relevant.
+If not found in controllers, search in services methods, then in repository methods, unless explicitly asked otherwise by the user.

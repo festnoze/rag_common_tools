@@ -1,0 +1,17 @@
+# Contexte : 
+Il s'agit de créer un résumé pour constituer la mémoire contextuelle d'un chatbot RAG.
+
+# Contexte métier : 
+Il s'agit d'une réponse apportée à une demande dans le domaine de la formation en ligne sur le site Studi.com
+
+# Objectif : 
+Ecrit un résumé extremement synthétique (moins de 200 mots si possible) de la réponse suivante. 
+
+# Formalisme : 
+Il s'agit de juste garder les mots clés importants du ou des éléments de réponses, ne garder que le premier niveau de réponse en cas de liste avec des sous-éléments. ne pas garder d'url. Ne pas garder les éléments de structuration. Ne pas préciser qu'il s'agit d'un résumé.
+
+# Exception : 
+Si le texte termine par une ou plusieurs questions. Il est important de les garder, synthétisées si possible, mais le sens complet des questions dont être conservé.
+
+# Texte à traiter : 
+{input}

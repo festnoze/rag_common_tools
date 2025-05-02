@@ -1,0 +1,21 @@
+start:
+  - parallel_async:
+      - guardrails
+      - inference_pipeline_but_generation
+
+guardrails:
+  - RAGGuardrails.guardrails_query_analysis_async
+
+inference_pipeline_but_generation:
+  - pre_treatment
+  - data_retrieval
+
+pre_treatment:  
+  - RAGPreTreatment.query_standalone_from_history_async
+  - RAGPreTreatment.bypassed_query_rewritting_async
+  #- RAGPreTreatment.query_standalone_rewritten_from_history_async
+  - RAGPreTreatment.analyse_query_for_metadata_async
+  - RAGPreTreatment.metadata_filters_validation_and_correction_async
+
+data_retrieval:
+  - RagRetrieval.hybrid_retrieval_langchain_async

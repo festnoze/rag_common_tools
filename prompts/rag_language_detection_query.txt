@@ -1,0 +1,7 @@
+# Instructions #
+Analyse if the following user question is in english language:
+- if user question is mainly in english language, respond with this answer: 'English detected'
+- if the user question is mainly in another language, translate it into english then return this translation.
+
+# User Question #
+{question}
